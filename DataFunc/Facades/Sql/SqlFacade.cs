@@ -106,7 +106,7 @@ namespace DataFunc.Facades.Sql
 
                 transaction.Commit();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 transaction.Rollback();
                 throw;

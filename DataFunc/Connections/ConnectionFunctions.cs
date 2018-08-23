@@ -89,6 +89,9 @@ namespace DataFunc.Connections
             if (string.IsNullOrWhiteSpace(connectionString))
                 throw new ArgumentNullException(nameof(connectionString));
 
+            if(token.IsCancellationRequested)
+                token.ThrowIfCancellationRequested();
+
             var connection = connectionString.ToNewDbConnection<T>();
             
             await connection.OpenAsync(token);

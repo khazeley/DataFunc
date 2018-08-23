@@ -22,10 +22,10 @@ namespace DataFunc.Commands
             var command = connection.CreateCommand();
             command.CommandText = commandText;
             command.CommandType = commandType;
-
-            var parameterList = parameters.ToList();
-            if (parameterList.Any())
-                parameterList.ToList().ForEach(parameter => command.Parameters.Add(parameter));
+            
+            var parameterArray = parameters.ToArray();
+            if (parameterArray.Any())
+                command.Parameters.AddRange(parameterArray);
             
             return command;
         }
@@ -140,9 +140,9 @@ namespace DataFunc.Commands
             command.CommandText = commandText;
             command.CommandType = commandType;
 
-            var parameterList = parameters.ToList();
-            if (parameterList.Any())
-                parameterList.ForEach(parameter => command.Parameters.Add(parameter));
+            var parameterArray = parameters.ToArray();
+            if (parameterArray.Any())
+                command.Parameters.AddRange(parameterArray);
 
             return command;
         }
@@ -161,9 +161,9 @@ namespace DataFunc.Commands
             command.CommandText = commandText;
             command.CommandType = commandType;
 
-            var parameterList = (await parameters).ToList();
-            if (parameterList.Any())
-                parameterList.ForEach(parameter => command.Parameters.Add(parameter));
+            var parameterArray = (await parameters).ToArray();
+            if (parameterArray.Any())
+                command.Parameters.AddRange(parameterArray);
 
             return command;
         }
